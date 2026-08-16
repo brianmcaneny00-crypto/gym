@@ -17,7 +17,6 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-size: 14px; min-height: 100vh; max-width: 480px; margin: 0 auto; }
 
-  /* SYNC BAR */
   #sync-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; background: var(--bg2); border-bottom: 1px solid var(--border); font-size: 11px; color: var(--muted); min-height: 36px; }
   #sync-status { display: flex; align-items: center; gap: 6px; }
   .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
@@ -27,16 +26,13 @@
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
   #sign-btn { padding: 5px 12px; background: var(--accent-dim); border: 1px solid var(--accent); border-radius: 20px; color: var(--accent); font-size: 10px; font-family: inherit; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; }
 
-  /* TABS */
   .tabs { display: flex; background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 36px; z-index: 100; }
   .tab { flex: 1; padding: 13px 0; text-align: center; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.15s; }
   .tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-  /* SCREENS */
   .screen { display: none; padding: 16px; }
   .screen.active { display: block; }
 
-  /* DAY LIST */
   .day-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
   .day-card:hover { border-color: var(--accent); background: var(--bg3); }
   .dc-name { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
@@ -46,7 +42,6 @@
   .prog-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.3s; }
   .prog-label { font-size: 11px; color: var(--muted); min-width: 36px; text-align: right; }
 
-  /* WORKOUT VIEW */
   #wv { display: none; }
   .back-btn { display: flex; align-items: center; gap: 8px; background: none; border: none; color: var(--muted); font-size: 11px; cursor: pointer; padding: 0 0 14px; font-family: inherit; letter-spacing: 0.06em; text-transform: uppercase; }
   .wv-title { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 4px; }
@@ -54,7 +49,6 @@
   .sec-lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ss-color); margin: 16px 0 6px 2px; display: flex; align-items: center; gap: 6px; }
   .sec-lbl::before { content:''; display:inline-block; width:8px; height:1px; background:var(--ss-color); }
 
-  /* EXERCISE CARD */
   .ex-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; transition: border-color 0.2s; }
   .ex-card.completed { border-color: var(--accent); background: var(--done-bg); }
   .ex-hdr { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; cursor: pointer; }
@@ -81,7 +75,9 @@
   .comp-btn:hover { border-color: var(--accent); color: var(--accent); }
   .comp-btn.on { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
 
-  /* MOBILITY */
+  .end-workout-btn { width: 100%; padding: 14px; background: var(--danger); border: none; border-radius: var(--radius); color: #fff; font-size: 13px; font-family: inherit; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; margin-top: 24px; margin-bottom: 8px; }
+  .end-workout-btn:hover { opacity: 0.85; }
+
   .mob-section { margin-bottom: 20px; }
   .mob-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
   .mob-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 7px; cursor: pointer; font-size: 13px; transition: all 0.15s; }
@@ -89,13 +85,12 @@
   .mob-ck { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
   .mob-item.on .mob-ck { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
 
-  /* HISTORY */
   .he { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 8px; }
   .he-date { font-size: 11px; color: var(--muted); }
   .he-name { font-size: 13px; font-weight: 600; margin: 3px 0 2px; }
   .he-sets { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .he-day { font-size: 10px; color: var(--ss-color); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
 
-  /* STATS */
   .stat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 20px; }
   .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
   .stat-lbl { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
@@ -109,17 +104,25 @@
   .clear-btn { background: none; border: 1px solid var(--border); color: var(--muted); }
   .clear-btn:hover { border-color: var(--danger); color: var(--danger); }
   .empty { text-align: center; color: var(--muted); font-size: 13px; padding: 40px 16px; }
+
+  .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 200; align-items: center; justify-content: center; }
+  .modal-overlay.show { display: flex; }
+  .modal { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 20px; max-width: 340px; width: 100%; }
+  .modal h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+  .modal p { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+  .modal-btns { display: flex; gap: 10px; }
+  .modal-btns button { flex: 1; padding: 11px; border-radius: var(--radius-sm); font-size: 12px; font-family: inherit; cursor: pointer; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; }
+  .modal-cancel { background: none; border: 1px solid var(--border); color: var(--muted); }
+  .modal-confirm { background: var(--danger); border: none; color: #fff; }
 </style>
 </head>
 <body>
 
-<!-- SYNC BAR -->
 <div id="sync-bar">
   <div id="sync-status"><div class="sync-dot" id="sync-dot"></div><span id="sync-msg">Not signed in</span></div>
   <button id="sign-btn" onclick="handleSignIn()">Sign in with Google</button>
 </div>
 
-<!-- TABS -->
 <div class="tabs">
   <div class="tab active" onclick="ST('gym')">Gym</div>
   <div class="tab" onclick="ST('mob')">Mobility</div>
@@ -153,46 +156,57 @@
 <div id="hist" class="screen"><div id="hl"></div></div>
 <div id="stats" class="screen"><div id="stc"></div></div>
 
+<div class="modal-overlay" id="end-modal">
+  <div class="modal">
+    <h3>End Workout</h3>
+    <p>This will save your session to history and reset today's workout. Weight increase recommendations will be kept for next time.</p>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-confirm" onclick="confirmEndWorkout()">End &amp; Save</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// ── WORKOUT DATA ──────────────────────────────────────────────
 var WD = {
   mon: { name: "Monday — Chest & Triceps", groups: [
-    {t:"s", e:[{n:"Flat barbell bench press",s:4,r:"8-10"}]},
-    {t:"ss", e:[{n:"Incline dumbbell press",s:3,r:"10-12"},{n:"Cable fly",s:3,r:"12-15"}]},
-    {t:"s", e:[{n:"Dumbbell pullover",s:3,r:"12"}]},
-    {t:"ss", e:[{n:"Close-grip bench press",s:3,r:"10"},{n:"Overhead tricep extension",s:3,r:"12"}]},
-    {t:"ss", e:[{n:"Tricep pushdown rope",s:3,r:"12-15"},{n:"Dips",s:3,r:"10-12"}]},
-    {t:"s", e:[{n:"Push-up finisher",s:2,r:"max"}]},
-    {t:"ss", e:[{n:"Dead bug",s:3,r:"10/side"},{n:"Plank",s:3,r:"45-60sec"}]},
+    {t:"s", e:[{n:"Barbell bench press",s:4,r:"6-8"}]},
+    {t:"ss", e:[{n:"Dumbbell incline press",s:3,r:"10-12"},{n:"Pec deck / cable crossover",s:3,r:"12-15"}]},
+    {t:"ss", e:[{n:"Dumbbell flat fly",s:3,r:"12"},{n:"Dips (weighted)",s:3,r:"8-10"}]},
+    {t:"s", e:[{n:"Landmine press",s:3,r:"10-12"}]},
+    {t:"ss", e:[{n:"Skull crushers",s:3,r:"10-12"},{n:"Tricep pushdown (bar)",s:3,r:"12-15"}]},
+    {t:"ss", e:[{n:"Cable overhead tricep extension",s:3,r:"12"},{n:"Diamond push-up",s:2,r:"max"}]},
+    {t:"ss", e:[{n:"Ab wheel rollout",s:3,r:"10"},{n:"Side plank",s:3,r:"30-45sec"}]},
     {t:"s", e:[{n:"Pallof press",s:3,r:"10/side"}]}
   ]},
   wed: { name: "Wednesday — Back & Biceps", groups: [
-    {t:"s", e:[{n:"Deadlift / Romanian DL",s:4,r:"6-8"}]},
-    {t:"ss", e:[{n:"Pull-ups / Lat pulldown",s:4,r:"8-10"},{n:"Barbell curl",s:3,r:"10"}]},
-    {t:"ss", e:[{n:"Barbell bent-over row",s:4,r:"8-10"},{n:"Incline dumbbell curl",s:3,r:"12"}]},
-    {t:"ss", e:[{n:"Seated cable row",s:3,r:"12"},{n:"Hammer curl",s:3,r:"12"}]},
-    {t:"ss", e:[{n:"Face pulls",s:3,r:"15"},{n:"Cable curl",s:2,r:"15"}]},
-    {t:"ss", e:[{n:"Cable woodchop",s:3,r:"10/side"},{n:"Hanging knee raise",s:3,r:"15"}]},
-    {t:"s", e:[{n:"Bird-dog",s:3,r:"10/side"}]}
+    {t:"s", e:[{n:"Trap bar deadlift",s:4,r:"6-8"}]},
+    {t:"ss", e:[{n:"Weighted pull-ups",s:4,r:"6-8"},{n:"Chest-supported dumbbell row",s:3,r:"10-12"}]},
+    {t:"ss", e:[{n:"Single-arm cable row",s:3,r:"12"},{n:"EZ bar curl",s:3,r:"10-12"}]},
+    {t:"ss", e:[{n:"Seated cable row (wide grip)",s:3,r:"12"},{n:"Incline dumbbell curl",s:3,r:"12"}]},
+    {t:"ss", e:[{n:"Straight-arm pulldown",s:3,r:"15"},{n:"Concentration curl",s:3,r:"12"}]},
+    {t:"ss", e:[{n:"Face pulls",s:3,r:"15"},{n:"Reverse curl",s:3,r:"12"}]},
+    {t:"ss", e:[{n:"Cable woodchop",s:3,r:"10/side"},{n:"Hanging leg raise",s:3,r:"12"}]},
+    {t:"s", e:[{n:"Superman hold",s:3,r:"10"}]}
   ]},
   fri: { name: "Friday — Legs & Shoulders", groups: [
-    {t:"s", e:[{n:"Box squat to parallel",s:4,r:"8"}]},
-    {t:"ss", e:[{n:"Leg press",s:4,r:"10-12"},{n:"Lying leg curl",s:3,r:"12"}]},
-    {t:"ss", e:[{n:"Bulgarian split squat",s:3,r:"10/leg"},{n:"Romanian deadlift",s:4,r:"10"}]},
-    {t:"s", e:[{n:"Terminal knee extension",s:3,r:"15"}]},
-    {t:"ss", e:[{n:"Barbell hip thrust",s:4,r:"10"},{n:"Nordic curl",s:3,r:"6"}]},
+    {t:"s", e:[{n:"Low bar squat",s:4,r:"6-8"}]},
+    {t:"ss", e:[{n:"Hack squat",s:4,r:"10-12"},{n:"Nordic curl",s:3,r:"6-8"}]},
+    {t:"ss", e:[{n:"Walking lunges",s:3,r:"12/leg"},{n:"Romanian deadlift",s:3,r:"10-12"}]},
+    {t:"s", e:[{n:"Leg extension",s:3,r:"15"}]},
+    {t:"ss", e:[{n:"Barbell hip thrust",s:4,r:"10-12"},{n:"Lying leg curl",s:3,r:"12"}]},
     {t:"ss", e:[{n:"Standing calf raise",s:4,r:"15-20"},{n:"Seated calf raise",s:3,r:"15"}]},
-    {t:"s", e:[{n:"Seated DB overhead press",s:4,r:"8-10"}]},
-    {t:"ss", e:[{n:"Lateral raise",s:3,r:"15"},{n:"Rear delt fly",s:3,r:"15"}]},
-    {t:"s", e:[{n:"Arnold press",s:3,r:"10"}]},
+    {t:"s", e:[{n:"Dumbbell shoulder press",s:4,r:"8-10"}]},
+    {t:"ss", e:[{n:"Cable lateral raise",s:3,r:"15"},{n:"Bent-over rear delt fly",s:3,r:"15"}]},
+    {t:"s", e:[{n:"Barbell upright row",s:3,r:"12"}]},
     {t:"ss", e:[{n:"Dead bug",s:3,r:"10/side"},{n:"Pallof press",s:3,r:"10/side"}]},
-    {t:"s", e:[{n:"Glute bridge march",s:3,r:"10/leg"}]}
+    {t:"s", e:[{n:"Single-leg glute bridge",s:3,r:"12/leg"}]}
   ]}
 };
-var MAM = ["90/90 hip stretch","World's greatest stretch","Calf & soleus stretch","Clamshells with band","Thoracic spine rotation","Ankle circles"];
-var MPM = ["Foam roll quads + IT band","Foam roll thoracic spine","Pigeon pose / figure-4","Supine hamstring stretch"];
 
-// ── STORAGE (localStorage + Google Drive) ─────────────────────
+var MAM = ["Hip flexor kneeling stretch","Cat-cow","Banded shoulder dislocates","Lateral lunge stretch","Thoracic rotation with reach","Wrist circles"];
+var MPM = ["Foam roll hamstrings + glutes","Foam roll lats","Doorway chest stretch","Supine spinal twist"];
+
 var CLIENT_ID = "957672334066-ot38g5tf5go6gnfvv3k3jee3lnv9lmuq.apps.googleusercontent.com";
 var SCOPES = "https://www.googleapis.com/auth/drive.appdata";
 var FILE_NAME = "gym_tracker_data.json";
@@ -200,6 +214,7 @@ var driveFileId = null;
 var tokenClient = null;
 var accessToken = null;
 var saveTimer = null;
+var currentEndDay = null;
 
 function LD() { try { return JSON.parse(localStorage.getItem("gt7") || "{}"); } catch(e) { return {}; } }
 function SDLocal(d) { try { localStorage.setItem("gt7", JSON.stringify(d)); } catch(e) {} }
@@ -207,28 +222,18 @@ var D = LD();
 var CD = null;
 
 function setSyncStatus(state, msg) {
-  var dot = document.getElementById("sync-dot");
-  var txt = document.getElementById("sync-msg");
-  dot.className = "sync-dot " + state;
-  txt.textContent = msg;
+  document.getElementById("sync-dot").className = "sync-dot " + state;
+  document.getElementById("sync-msg").textContent = msg;
 }
 
-// ── GOOGLE SIGN IN ────────────────────────────────────────────
 window.onload = function() {
-  if (typeof google !== "undefined" && google.accounts) {
-    initGoogleAuth();
-  } else {
-    // Retry after GSI script loads
-    var t = setInterval(function() {
-      if (typeof google !== "undefined" && google.accounts) { clearInterval(t); initGoogleAuth(); }
-    }, 300);
-  }
+  if (typeof google !== "undefined" && google.accounts) { initGoogleAuth(); }
+  else { var t = setInterval(function() { if (typeof google !== "undefined" && google.accounts) { clearInterval(t); initGoogleAuth(); } }, 300); }
 };
 
 function initGoogleAuth() {
   tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
+    client_id: CLIENT_ID, scope: SCOPES,
     callback: function(resp) {
       if (resp.error) { setSyncStatus("err", "Auth error"); return; }
       accessToken = resp.access_token;
@@ -238,11 +243,8 @@ function initGoogleAuth() {
       loadFromDrive();
     }
   });
-  // Auto-prompt silently if possible
   google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
-    prompt: "",
+    client_id: CLIENT_ID, scope: SCOPES, prompt: "",
     callback: function(resp) {
       if (!resp.error) {
         accessToken = resp.access_token;
@@ -255,13 +257,9 @@ function initGoogleAuth() {
   }).requestAccessToken();
 }
 
-function handleSignIn() {
-  if (tokenClient) tokenClient.requestAccessToken({ prompt: "consent" });
-}
+function handleSignIn() { if (tokenClient) tokenClient.requestAccessToken({ prompt: "consent" }); }
 
-// ── DRIVE OPERATIONS ──────────────────────────────────────────
 function loadFromDrive() {
-  // Find file in appDataFolder
   fetch("https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&fields=files(id,name)&q=name+%3d+%27" + FILE_NAME + "%27", {
     headers: { Authorization: "Bearer " + accessToken }
   }).then(function(r) { return r.json(); }).then(function(data) {
@@ -270,20 +268,12 @@ function loadFromDrive() {
       return fetch("https://www.googleapis.com/drive/v3/files/" + driveFileId + "?alt=media", {
         headers: { Authorization: "Bearer " + accessToken }
       }).then(function(r) { return r.json(); }).then(function(saved) {
-        // Merge Drive data (Drive wins for history/prs, merge workout sets)
-        if (saved && typeof saved === "object") {
-          D = saved;
-          SDLocal(D);
-        }
+        if (saved && typeof saved === "object") { D = saved; SDLocal(D); }
         setSyncStatus("ok", "Synced with Drive");
-        UDS();
-        if (CD) OD(CD);
+        UDS(); if (CD) OD(CD);
       });
-    } else {
-      // No file yet, will create on first save
-      setSyncStatus("ok", "Drive connected");
-    }
-  }).catch(function(e) { setSyncStatus("err", "Load failed"); });
+    } else { setSyncStatus("ok", "Drive connected"); }
+  }).catch(function() { setSyncStatus("err", "Load failed"); });
 }
 
 function saveToDrive() {
@@ -291,27 +281,19 @@ function saveToDrive() {
   setSyncStatus("busy", "Saving…");
   var body = JSON.stringify(D);
   if (driveFileId) {
-    // Update existing
     fetch("https://www.googleapis.com/upload/drive/v3/files/" + driveFileId + "?uploadType=media", {
-      method: "PATCH",
-      headers: { Authorization: "Bearer " + accessToken, "Content-Type": "application/json" },
-      body: body
+      method: "PATCH", headers: { Authorization: "Bearer " + accessToken, "Content-Type": "application/json" }, body: body
     }).then(function() { SDLocal(D); setSyncStatus("ok", "Saved to Drive"); })
       .catch(function() { SDLocal(D); setSyncStatus("err", "Save failed (local backup done)"); });
   } else {
-    // Create new in appDataFolder
     var meta = JSON.stringify({ name: FILE_NAME, parents: ["appDataFolder"] });
     var boundary = "gt7boundary";
     var multipart = "--" + boundary + "\r\nContent-Type: application/json\r\n\r\n" + meta +
       "\r\n--" + boundary + "\r\nContent-Type: application/json\r\n\r\n" + body + "\r\n--" + boundary + "--";
     fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id", {
-      method: "POST",
-      headers: { Authorization: "Bearer " + accessToken, "Content-Type": "multipart/related; boundary=" + boundary },
-      body: multipart
+      method: "POST", headers: { Authorization: "Bearer " + accessToken, "Content-Type": "multipart/related; boundary=" + boundary }, body: multipart
     }).then(function(r) { return r.json(); }).then(function(f) {
-      driveFileId = f.id;
-      SDLocal(D);
-      setSyncStatus("ok", "Saved to Drive");
+      driveFileId = f.id; SDLocal(D); setSyncStatus("ok", "Saved to Drive");
     }).catch(function() { SDLocal(D); setSyncStatus("err", "Save failed (local backup done)"); });
   }
 }
@@ -322,7 +304,6 @@ function scheduleSave() {
   saveTimer = setTimeout(saveToDrive, 1500);
 }
 
-// ── UI ────────────────────────────────────────────────────────
 function ST(t) {
   ["gym","mob","hist","stats"].forEach(function(id, i) {
     document.getElementById(id).classList.toggle("active", id === t);
@@ -396,6 +377,7 @@ function buildWorkout(day) {
       h += '</div></div>';
     });
   });
+  h += '<button class="end-workout-btn" onclick="endWorkout(\''+day+'\')">End Workout</button>';
   return h;
 }
 
@@ -464,8 +446,7 @@ function TC(k, day, btn) {
       else if(!D[k].completed&&ok) ok.remove();
     }
   }
-  scheduleSave();
-  UDS();
+  scheduleSave(); UDS();
 }
 
 function UPR(k, sets) {
@@ -473,6 +454,44 @@ function UPR(k, sets) {
   var nm=k.split("|").slice(1).join("|");
   var best=sets.reduce(function(mx,s){var w=parseFloat(s.weight)||0;return w>mx?w:mx;},0);
   if (!D._prs[nm]||best>D._prs[nm]) D._prs[nm]=best;
+}
+
+function endWorkout(day) {
+  currentEndDay = day;
+  document.getElementById("end-modal").classList.add("show");
+}
+
+function closeModal() {
+  document.getElementById("end-modal").classList.remove("show");
+  currentEndDay = null;
+}
+
+function confirmEndWorkout() {
+  var day = currentEndDay;
+  closeModal();
+  if (!day) return;
+  var progressionFlags = {};
+  WD[day].groups.forEach(function(g) {
+    g.e.forEach(function(ex) {
+      var k = EK(day, ex.n);
+      var ed = D[k] || { sets: [] };
+      var tr = topR(ex.r);
+      var allHit = tr && ed.sets.length >= ex.s && ed.sets.every(function(s) { return s.reps && +s.reps >= tr; });
+      if (allHit) progressionFlags[k] = true;
+    });
+  });
+  WD[day].groups.forEach(function(g) {
+    g.e.forEach(function(ex) {
+      var k = EK(day, ex.n);
+      delete D[k];
+    });
+  });
+  Object.keys(progressionFlags).forEach(function(k) {
+    D[k] = { sets: [], completed: false, _open: false, _needsIncrease: true };
+  });
+  scheduleSave();
+  BD();
+  setSyncStatus("ok", "Workout saved ✓");
 }
 
 function RM() {
@@ -491,11 +510,12 @@ function RH() {
   var c=document.getElementById("hl");
   var h=D._history||[];
   if (!h.length){c.innerHTML='<div class="empty">No workouts logged yet</div>';return;}
+  var dayNames={mon:"Chest & Triceps",wed:"Back & Biceps",fri:"Legs & Shoulders"};
   c.innerHTML=h.slice(0,100).map(function(e){
     var d=new Date(e.date);
     var ds=d.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});
     var setLines=(e.sets||[]).filter(function(s){return s.weight;}).map(function(s,i){return "Set "+(i+1)+": "+s.weight+"lb &times; "+(s.reps||"?")+" reps";}).join("<br>");
-    return '<div class="he"><div class="he-date">'+ds+'</div><div class="he-name">'+e.exercise+'</div>'+(setLines?'<div class="he-sets">'+setLines+'</div>':'')+'</div>';
+    return '<div class="he"><div class="he-day">'+(dayNames[e.day]||e.day)+'</div><div class="he-date">'+ds+'</div><div class="he-name">'+e.exercise+'</div>'+(setLines?'<div class="he-sets">'+setLines+'</div>':'')+'</div>';
   }).join("");
 }
 
@@ -520,18 +540,16 @@ function EXP() {
   var payload={exported:new Date().toISOString(),history:D._history||[],prs:D._prs||{}};
   var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
   var url=URL.createObjectURL(blob);
-  var a=document.createElement("a");
-  a.href=url; a.download="gym_history_"+new Date().toISOString().slice(0,10)+".json";
+  var a=document.createElement("a"); a.href=url; a.download="gym_history_"+new Date().toISOString().slice(0,10)+".json";
   document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
 }
 
 function CLR() {
-  if (confirm("Clear all workout data? This cannot be undone.")) {
-    D={}; scheduleSave(); RS(); UDS(); alert("Data cleared.");
-  }
+  if (confirm("Clear all workout data? This cannot be undone.")) { D={}; scheduleSave(); RS(); UDS(); alert("Data cleared."); }
 }
 
 UDS();
 </script>
 </body>
 </html>
+
