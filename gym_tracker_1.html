@@ -55,7 +55,7 @@
   .ex-hdr-left { flex: 1; min-width: 0; }
   .ex-nm { font-size: 13px; font-weight: 600; }
   .ex-mt { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .ex-last { font-size: 10px; color: var(--ss-color); margin-top: 3px; letter-spacing: 0.02em; }
+  .ex-suggest { font-size: 10px; color: var(--accent); margin-top: 3px; letter-spacing: 0.02em; font-weight: 600; }
   .ex-badges { display: flex; gap: 5px; align-items: center; flex-shrink: 0; margin-left: 8px; }
   .bdg { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700; letter-spacing: 0.04em; }
   .bdg-ss { background: var(--ss-bg); color: var(--ss-color); }
@@ -65,11 +65,6 @@
   .ex-card.open .chev { transform: rotate(180deg); }
   .ex-body { display: none; padding: 0 14px 14px; border-top: 1px solid var(--border); }
   .ex-card.open .ex-body { display: block; }
-
-  .last-session-bar { background: var(--bg3); border-radius: var(--radius-sm); padding: 8px 10px; margin: 10px 0 8px; font-size: 11px; color: var(--muted); border-left: 2px solid var(--ss-color); }
-  .last-session-bar .ls-title { font-size: 10px; color: var(--ss-color); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
-  .last-session-sets { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-  .ls-set { font-size: 11px; color: var(--muted); background: var(--bg2); padding: 3px 8px; border-radius: 20px; border: 1px solid var(--border); }
 
   .sets-hdr { display: grid; grid-template-columns: 28px 1fr 1fr 34px; gap: 6px 8px; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 0 6px; }
   .set-row { display: grid; grid-template-columns: 28px 1fr 1fr 34px; gap: 6px 8px; align-items: center; margin-bottom: 6px; }
@@ -229,31 +224,27 @@ function SDLocal(d) { try { localStorage.setItem("gt7", JSON.stringify(d)); } ca
 var D = LD();
 var CD = null;
 
-// ── LAST SESSION LOOKUP ───────────────────────────────────────
-// Build a map of exercise name -> most recent history entry
 function buildLastSessionMap() {
   var history = D._history || [];
   var map = {};
-  // History is newest first, so first match per exercise is the last session
   for (var i = 0; i < history.length; i++) {
     var e = history[i];
-    var nm = e.exercise;
-    if (!map[nm] && e.sets && e.sets.length > 0) {
-      map[nm] = e;
-    }
+    if (!map[e.exercise] && e.sets && e.sets.length > 0) { map[e.exercise] = e; }
   }
   return map;
 }
 
-function getLastSessionSummary(exName) {
+function getSuggestedWeight(exName, repRange) {
   var map = buildLastSessionMap();
   var entry = map[exName];
   if (!entry || !entry.sets || !entry.sets.length) return null;
   var sets = entry.sets.filter(function(s) { return s.weight; });
   if (!sets.length) return null;
-  var d = new Date(entry.date);
-  var dateStr = d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-  return { sets: sets, date: dateStr, raw: entry };
+  var topWeight = parseFloat(sets[0].weight);
+  if (!topWeight) return null;
+  var tr = topR(repRange);
+  var allHit = tr && sets.every(function(s) { return s.reps && +s.reps >= tr; });
+  return allHit ? topWeight + 5 : topWeight;
 }
 
 function getPrefilledWeights(exName, numSets) {
@@ -261,12 +252,10 @@ function getPrefilledWeights(exName, numSets) {
   var entry = map[exName];
   if (!entry || !entry.sets || !entry.sets.length) return [];
   var weights = entry.sets.map(function(s) { return s.weight || ""; });
-  // Pad or trim to match numSets
   while (weights.length < numSets) weights.push(weights[weights.length - 1] || "");
   return weights.slice(0, numSets);
 }
 
-// ── SYNC ──────────────────────────────────────────────────────
 function setSyncStatus(state, msg) {
   document.getElementById("sync-dot").className = "sync-dot " + state;
   document.getElementById("sync-msg").textContent = msg;
@@ -350,7 +339,6 @@ function scheduleSave() {
   saveTimer = setTimeout(saveToDrive, 1500);
 }
 
-// ── UI ────────────────────────────────────────────────────────
 function ST(t) {
   ["gym","mob","hist","stats"].forEach(function(id, i) {
     document.getElementById(id).classList.toggle("active", id === t);
@@ -400,46 +388,23 @@ function buildWorkout(day) {
       var cid = "C_" + k.replace(/[^a-zA-Z0-9]/g, "_");
       var isOpen = ed._open || false;
       var ek = k.replace(/\\/g,"\\\\").replace(/'/g,"\\'");
-
-      // Last session data
-      var lastSession = getLastSessionSummary(ex.n);
+      var suggested = getSuggestedWeight(ex.n, ex.r);
       var preWeights = getPrefilledWeights(ex.n, ex.s);
-      var lastLabel = "";
-      if (lastSession) {
-        var topSet = lastSession.sets[0];
-        lastLabel = "Last " + lastSession.date + ": " + topSet.weight + "lb &times; " + (topSet.reps || "?") + " reps";
-      }
-
       h += '<div class="ex-card'+(isDone?" completed":"")+(isOpen?" open":"")+ '" id="'+cid+'">';
       h += '<div class="ex-hdr" onclick="TX(\''+ek+'\')"><div class="ex-hdr-left">';
       h += '<div class="ex-nm">'+ex.n+'</div>';
       h += '<div class="ex-mt">'+ex.s+'&times;'+ex.r+'</div>';
-      if (lastLabel) h += '<div class="ex-last">'+lastLabel+'</div>';
-      h += '</div>';
-      h += '<div class="ex-badges">';
+      if (suggested) h += '<div class="ex-suggest">Starting weight: '+suggested+' lb</div>';
+      h += '</div><div class="ex-badges">';
       if (g.t==="ss") h += '<span class="bdg bdg-ss">SS</span>';
       if (allHit&&!isDone) h += '<span class="bdg bdg-up">+5 lb</span>';
       if (isDone) h += '<span class="bdg bdg-ok">&#10003;</span>';
       h += '<span class="chev">&#9660;</span></div></div>';
-
       h += '<div class="ex-body">';
-
-      // Last session detail bar
-      if (lastSession && lastSession.sets.length > 0) {
-        h += '<div class="last-session-bar">';
-        h += '<div class="ls-title">Last session — ' + lastSession.date + '</div>';
-        h += '<div class="last-session-sets">';
-        lastSession.sets.forEach(function(s, i) {
-          if (s.weight) h += '<span class="ls-set">S'+(i+1)+': '+s.weight+'lb&times;'+(s.reps||'?')+'</span>';
-        });
-        h += '</div></div>';
-      }
-
       h += '<div class="sets-hdr"><span>Set</span><span>Weight</span><span>Reps</span><span></span></div>';
       for (var s = 0; s < ex.s; s++) {
         var sd = ed.sets[s] || {};
-        // Use saved value if exists, otherwise prefill from last session
-        var weightVal = sd.weight !== undefined ? sd.weight : (preWeights[s] || "");
+        var weightVal = sd.weight !== undefined && sd.weight !== "" ? sd.weight : (preWeights[s] || "");
         var isPrefilled = (sd.weight === undefined || sd.weight === "") && preWeights[s];
         h += '<div class="set-row">';
         h += '<span class="set-num">'+(s+1)+'</span>';
@@ -558,10 +523,7 @@ function confirmEndWorkout() {
     });
   });
   WD[day].groups.forEach(function(g) {
-    g.e.forEach(function(ex) {
-      var k = EK(day, ex.n);
-      delete D[k];
-    });
+    g.e.forEach(function(ex) { var k = EK(day, ex.n); delete D[k]; });
   });
   Object.keys(progressionFlags).forEach(function(k) {
     D[k] = { sets: [], completed: false, _open: false, _needsIncrease: true };
