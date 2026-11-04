@@ -66,6 +66,8 @@
   .ex-body { display: none; padding: 0 14px 14px; border-top: 1px solid var(--border); }
   .ex-card.open .ex-body { display: block; }
 
+
+
   .sets-hdr { display: grid; grid-template-columns: 28px 1fr 1fr 34px; gap: 6px 8px; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 0 6px; }
   .set-row { display: grid; grid-template-columns: 28px 1fr 1fr 34px; gap: 6px 8px; align-items: center; margin-bottom: 6px; }
   .set-num { font-size: 12px; color: var(--muted); text-align: center; }
@@ -174,41 +176,37 @@
 var WD = {
   mon: { name: "Monday — Chest & Triceps", groups: [
     {t:"s", e:[{n:"Barbell bench press",s:4,r:"6-8"}]},
-    {t:"ss", e:[{n:"Dumbbell incline press",s:3,r:"10-12"},{n:"Pec deck / cable crossover",s:3,r:"12-15"}]},
-    {t:"ss", e:[{n:"Dumbbell flat fly",s:3,r:"12"},{n:"Dips (weighted)",s:3,r:"8-10"}]},
-    {t:"s", e:[{n:"Landmine press",s:3,r:"10-12"}]},
-    {t:"ss", e:[{n:"Skull crushers",s:3,r:"10-12"},{n:"Tricep pushdown (bar)",s:3,r:"12-15"}]},
-    {t:"ss", e:[{n:"Cable overhead tricep extension",s:3,r:"12"},{n:"Diamond push-up",s:2,r:"max"}]},
-    {t:"ss", e:[{n:"Ab wheel rollout",s:3,r:"10"},{n:"Side plank",s:3,r:"30-45sec"}]},
-    {t:"s", e:[{n:"Pallof press",s:3,r:"10/side"}]}
+    {t:"ss", e:[{n:"Low-incline dumbbell press",s:3,r:"8-10"},{n:"Cable crossover (high-to-low)",s:3,r:"12-15"}]},
+    {t:"s", e:[{n:"Dips (weighted)",s:3,r:"8-10"}]},
+    {t:"ss", e:[{n:"JM press",s:3,r:"8-10"},{n:"Single-arm cable pushdown",s:3,r:"12-15"}]},
+    {t:"ss", e:[{n:"Overhead dumbbell tricep extension",s:3,r:"10-12"},{n:"Cable crunch",s:3,r:"12-15"}]},
+    {t:"ss", e:[{n:"Weighted plank",s:3,r:"30-45sec"},{n:"Pallof press",s:3,r:"10/side"}]}
   ]},
   wed: { name: "Wednesday — Back & Biceps", groups: [
     {t:"s", e:[{n:"Trap bar deadlift",s:4,r:"6-8"}]},
-    {t:"ss", e:[{n:"Weighted pull-ups",s:4,r:"6-8"},{n:"Chest-supported dumbbell row",s:3,r:"10-12"}]},
-    {t:"ss", e:[{n:"Single-arm cable row",s:3,r:"12"},{n:"EZ bar curl",s:3,r:"10-12"}]},
-    {t:"ss", e:[{n:"Seated cable row (wide grip)",s:3,r:"12"},{n:"Incline dumbbell curl",s:3,r:"12"}]},
-    {t:"ss", e:[{n:"Straight-arm pulldown",s:3,r:"15"},{n:"Concentration curl",s:3,r:"12"}]},
-    {t:"ss", e:[{n:"Face pulls",s:3,r:"15"},{n:"Reverse curl",s:3,r:"12"}]},
+    {t:"ss", e:[{n:"Weighted pull-ups",s:4,r:"6-8"},{n:"Machine preacher curl",s:3,r:"10-12"}]},
+    {t:"ss", e:[{n:"Chest-supported T-bar row",s:4,r:"8-10"},{n:"Cross-body hammer curl",s:3,r:"10-12"}]},
+    {t:"ss", e:[{n:"Single-arm lat pulldown",s:3,r:"10-12"},{n:"Bayesian cable curl",s:3,r:"12-15"}]},
+    {t:"ss", e:[{n:"Seated cable row (close grip)",s:3,r:"10-12"},{n:"Cable lateral raise",s:3,r:"15"}]},
+    {t:"ss", e:[{n:"Straight-arm pulldown",s:3,r:"12-15"},{n:"Face pulls",s:3,r:"15"}]},
     {t:"ss", e:[{n:"Cable woodchop",s:3,r:"10/side"},{n:"Hanging leg raise",s:3,r:"12"}]},
-    {t:"s", e:[{n:"Superman hold",s:3,r:"10"}]}
+    {t:"s", e:[{n:"45-degree back extension",s:3,r:"12"}]}
   ]},
   fri: { name: "Friday — Legs & Shoulders", groups: [
     {t:"s", e:[{n:"Low bar squat",s:4,r:"6-8"}]},
-    {t:"ss", e:[{n:"Hack squat",s:4,r:"10-12"},{n:"Nordic curl",s:3,r:"6-8"}]},
-    {t:"ss", e:[{n:"Walking lunges",s:3,r:"12/leg"},{n:"Romanian deadlift",s:3,r:"10-12"}]},
-    {t:"s", e:[{n:"Leg extension",s:3,r:"15"}]},
-    {t:"ss", e:[{n:"Barbell hip thrust",s:4,r:"10-12"},{n:"Lying leg curl",s:3,r:"12"}]},
-    {t:"ss", e:[{n:"Standing calf raise",s:4,r:"15-20"},{n:"Seated calf raise",s:3,r:"15"}]},
+    {t:"ss", e:[{n:"Hack squat",s:4,r:"8-10"},{n:"Seated leg curl",s:3,r:"10-12"}]},
+    {t:"s", e:[{n:"Romanian deadlift",s:3,r:"8-10"}]},
+    {t:"s", e:[{n:"Leg extension",s:3,r:"12-15"}]},
+    {t:"s", e:[{n:"Barbell hip thrust",s:4,r:"8-10"}]},
+    {t:"s", e:[{n:"Standing calf raise",s:4,r:"12-15"}]},
     {t:"s", e:[{n:"Dumbbell shoulder press",s:4,r:"8-10"}]},
-    {t:"ss", e:[{n:"Cable lateral raise",s:3,r:"15"},{n:"Bent-over rear delt fly",s:3,r:"15"}]},
-    {t:"s", e:[{n:"Barbell upright row",s:3,r:"12"}]},
-    {t:"ss", e:[{n:"Dead bug",s:3,r:"10/side"},{n:"Pallof press",s:3,r:"10/side"}]},
-    {t:"s", e:[{n:"Single-leg glute bridge",s:3,r:"12/leg"}]}
+    {t:"ss", e:[{n:"Cable lateral raise",s:3,r:"15"},{n:"Reverse pec deck",s:3,r:"12-15"}]},
+    {t:"s", e:[{n:"Ab wheel rollout",s:3,r:"10"}]}
   ]}
 };
 
-var MAM = ["Hip flexor kneeling stretch","Cat-cow","Banded shoulder dislocates","Lateral lunge stretch","Thoracic rotation with reach","Wrist circles"];
-var MPM = ["Foam roll hamstrings + glutes","Foam roll lats","Doorway chest stretch","Supine spinal twist"];
+var MAM = ["Couch stretch","Deep squat hold with reach","Cossack squat (bodyweight)","Scapular wall slides","Quadruped rocking","Banded pull-aparts"];
+var MPM = ["Lacrosse ball glute release","Foam roll adductors","Child's pose with lat reach","Wall chest + biceps stretch","Legs up the wall (2 min)"];
 
 var CLIENT_ID = "957672334066-ot38g5tf5go6gnfvv3k3jee3lnv9lmuq.apps.googleusercontent.com";
 var SCOPES = "https://www.googleapis.com/auth/drive.appdata";
@@ -224,12 +222,18 @@ function SDLocal(d) { try { localStorage.setItem("gt7", JSON.stringify(d)); } ca
 var D = LD();
 var CD = null;
 
+// ── LAST SESSION LOOKUP ───────────────────────────────────────
+// Build a map of exercise name -> most recent history entry
 function buildLastSessionMap() {
   var history = D._history || [];
   var map = {};
+  // History is newest first, so first match per exercise is the last session
   for (var i = 0; i < history.length; i++) {
     var e = history[i];
-    if (!map[e.exercise] && e.sets && e.sets.length > 0) { map[e.exercise] = e; }
+    var nm = e.exercise;
+    if (!map[nm] && e.sets && e.sets.length > 0) {
+      map[nm] = e;
+    }
   }
   return map;
 }
@@ -256,6 +260,7 @@ function getPrefilledWeights(exName, numSets) {
   return weights.slice(0, numSets);
 }
 
+// ── SYNC ──────────────────────────────────────────────────────
 function setSyncStatus(state, msg) {
   document.getElementById("sync-dot").className = "sync-dot " + state;
   document.getElementById("sync-msg").textContent = msg;
@@ -339,6 +344,7 @@ function scheduleSave() {
   saveTimer = setTimeout(saveToDrive, 1500);
 }
 
+// ── UI ────────────────────────────────────────────────────────
 function ST(t) {
   ["gym","mob","hist","stats"].forEach(function(id, i) {
     document.getElementById(id).classList.toggle("active", id === t);
@@ -388,18 +394,23 @@ function buildWorkout(day) {
       var cid = "C_" + k.replace(/[^a-zA-Z0-9]/g, "_");
       var isOpen = ed._open || false;
       var ek = k.replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+
+      // Suggested weight from last session
       var suggested = getSuggestedWeight(ex.n, ex.r);
       var preWeights = getPrefilledWeights(ex.n, ex.s);
+
       h += '<div class="ex-card'+(isDone?" completed":"")+(isOpen?" open":"")+ '" id="'+cid+'">';
       h += '<div class="ex-hdr" onclick="TX(\''+ek+'\')"><div class="ex-hdr-left">';
       h += '<div class="ex-nm">'+ex.n+'</div>';
       h += '<div class="ex-mt">'+ex.s+'&times;'+ex.r+'</div>';
       if (suggested) h += '<div class="ex-suggest">Starting weight: '+suggested+' lb</div>';
-      h += '</div><div class="ex-badges">';
+      h += '</div>';
+      h += '<div class="ex-badges">';
       if (g.t==="ss") h += '<span class="bdg bdg-ss">SS</span>';
       if (allHit&&!isDone) h += '<span class="bdg bdg-up">+5 lb</span>';
       if (isDone) h += '<span class="bdg bdg-ok">&#10003;</span>';
       h += '<span class="chev">&#9660;</span></div></div>';
+
       h += '<div class="ex-body">';
       h += '<div class="sets-hdr"><span>Set</span><span>Weight</span><span>Reps</span><span></span></div>';
       for (var s = 0; s < ex.s; s++) {
@@ -523,7 +534,10 @@ function confirmEndWorkout() {
     });
   });
   WD[day].groups.forEach(function(g) {
-    g.e.forEach(function(ex) { var k = EK(day, ex.n); delete D[k]; });
+    g.e.forEach(function(ex) {
+      var k = EK(day, ex.n);
+      delete D[k];
+    });
   });
   Object.keys(progressionFlags).forEach(function(k) {
     D[k] = { sets: [], completed: false, _open: false, _needsIncrease: true };
